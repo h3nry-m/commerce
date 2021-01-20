@@ -2,6 +2,9 @@
 
 {% block body %}
     <h2>Active Listings</h2>
-
-    TODO
+    {% for listing in Listings %}
+        <h5><a href="\{{listing.pk}}\listing">{{listing}}</a></h5>
+        <ul>Price: ${{listing.price}}</ul>
+        <ul>Description: {{listing.description}}</ul>
+    {% endfor %}
 {% endblock %}
