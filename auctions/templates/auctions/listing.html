@@ -1,6 +1,7 @@
 {% extends 'auctions/layout.html' %}
 {% block body %}
     <h1>{{Listing.title}}</h1>
+    <img src="{{Listing.url}}" alt="{{Listing.title}}" width="250" height="300">
     <p>Price: {{Listing.price}}</p>
     <p>Description: {{Listing.description}}</p>
     <h5>Comments:</h5>

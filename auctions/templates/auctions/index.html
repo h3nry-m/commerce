@@ -4,6 +4,9 @@
     <h2>Active Listings</h2>
     {% for listing in Listings %}
         <h5><a href="\{{listing.pk}}\listing">{{listing}}</a></h5>
+        {% if listing.url != "None" %}
+            <img src="{{listing.url}}" alt="{{listing.title}}" width="200" height="250">
+        {% endif %}
         <ul>Price: ${{listing.price}}</ul>
         <ul>Description: {{listing.description}}</ul>
     {% endfor %}

@@ -30,6 +30,7 @@ class Listing(models.Model):
     category = models.CharField(
         max_length=64,
         choices=possible_categories, default="NONE")
+    url = models.CharField(max_length=200, default="None")
 
     def __str__(self):
         return f"{self.title}"
@@ -38,7 +39,6 @@ class Listing(models.Model):
 class Bid(models.Model):
     bid_amount = models.DecimalField(decimal_places=2, max_digits=100)
     timefield = models.DateTimeField(auto_now_add=True)
-    # datefield = models.DateField(auto_now_add=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="bid_hx")
     listing = models.ManyToManyField(
