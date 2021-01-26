@@ -13,6 +13,18 @@ def index(request):
     })
 
 
+def create(request):
+    return render(request, "auctions/create.html")
+
+
+def watchlist(request):
+    return render(request, "auctions/watchlist.html")
+
+
+def categories(request):
+    return render(request, "auctions/categories.html")
+
+
 def listing(request, listing_number):
     listing_detail = Listing.objects.get(pk=listing_number)
     return render(request, "auctions/listing.html", {
