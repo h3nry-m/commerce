@@ -3,8 +3,16 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django import forms
 
 from .models import User, Listing, Bid, Comment
+
+
+class ListingForm(forms.Form):
+    title = forms.CharField(label='Title')
+    price = forms.FloatField(label='Price')
+    description = forms.CharField(label='Description')
+    # url = forms.CharField(label='url')
 
 
 def index(request):
@@ -14,7 +22,20 @@ def index(request):
 
 
 def create(request):
-    return render(request, "auctions/create.html")
+    if request.method == "POST":
+        form = ListingForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            price = form.cleaned_data['price']
+            description = form.cleaned_data['description']
+            print(title, price, description)
+            new = Listing(title=title, price=price,
+                          description=description, user=request.user)
+            new.save()
+            return HttpResponseRedirect(reverse("listing", args=(new.pk,)))
+    return render(request, "auctions/create.html", {
+        "form": ListingForm(),
+    })
 
 
 def watchlist(request):
