@@ -2,10 +2,54 @@
 {% block body %}
     <h1>{{Listing.title}}</h1>
     <img src="{{Listing.url}}" alt="{{Listing.title}}" width="250" height="300">
-    <p>Price: {{Listing.price}}</p>
+    <p>Price: ${{Listing.price}}</p>
+    {% if Current_Bid %}
+        <h5>Current bid: ${{ Current_Bid }}</h5>
+        {% if user.is_authenticated %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input name="new_bid" 
+            type="number" 
+            step="0.01" 
+        {% if Current_bid %}
+            min={{Current_Bid}} 
+        {% else %}
+            min = {{Current_Bid}}
+        {% endif %}
+            placeholder="{{Current_Bid}}"
+            maxlength= "1"
+            >
+            <button type="submit">Place bid</button>
+        </form>
+        {% endif %}
+    {% else %}
+        <h5>No bids placed yet</h5>
+        {% if user.is_authenticated %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input name="new_bid" 
+            type="number" 
+            step="0.01" 
+            min = "{{Listing.price}}"
+            placeholder="{{Current_Bid}}"
+            maxlength= "1"
+            >
+            <button type="submit">Place bid</button>
+        </form>
+        {% endif %}
+    {% endif %}
+
     <p>Description: {{Listing.description}}</p>
     <h5>Comments:</h5>
-    {% for comment in Comments %}
+    {% if user.is_authenticated %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input name="new_comment" type="text" placeholder="Say something~">
+        <button type="submit">Comment</button>
+    </form>
+    <br></br>
+    {% endif %}
+    {% for comment in Comments reversed %}
         <p>"{{comment}}" - {{comment.user}}</p>
     {% endfor %}
 {% endblock %}

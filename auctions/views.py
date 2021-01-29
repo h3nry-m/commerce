@@ -27,9 +27,28 @@ def categories(request):
 
 def listing(request, listing_number):
     listing_detail = Listing.objects.get(pk=listing_number)
+    if request.method == 'POST':
+        print(request.POST)
+        if 'new_comment' in request.POST:
+            # try:
+            new_comment = request.POST['new_comment']
+            # listing_detail.comment_set.add(new_comment)
+            testing = Comment(comment=new_comment, user=request.user)
+            testing.save()
+            testing.listing.add(listing_detail)
+            testing.save()
+        elif "new_bid" in request.POST:
+            # except:
+            new_bid = request.POST['new_bid']
+            testing = Bid(bid_amount=new_bid, user=request.user)
+            testing.save()
+            testing.listing.add(listing_detail)
+            testing.save()
+    current_bid = listing_detail.all_bids.all().last()
     return render(request, "auctions/listing.html", {
         "Listing": listing_detail,
-        "Comments": listing_detail.all_comments.all()
+        "Comments": listing_detail.all_comments.all(),
+        "Current_Bid": current_bid,
     })
 
 
