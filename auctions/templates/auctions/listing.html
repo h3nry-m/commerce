@@ -3,6 +3,17 @@
     <h1>{{Listing.title}}</h1>
     <img src="{{Listing.url}}" alt="{{Listing.title}}" width="250" height="300">
     <p>Price: ${{Listing.price}}</p>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'watchlist' %}" method="POST">
+        {% csrf_token %}
+        <!-- <input name="add_watchlist" type="button"> -->
+        <button name ='add_watchlist' value={{Listing.pk}} type="submit">Add to watchlist</button>
+    </form>
+    <br></br>
+    {% endif %}
+
+
     {% if Current_Bid %}
         <h5>Current bid: ${{ Current_Bid }}</h5>
         {% if user.is_authenticated %}
