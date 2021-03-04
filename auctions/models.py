@@ -5,21 +5,7 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    pass
-
-
-# class Category(models.Model):
-#     possible_categories = [
-#         ("NONE", "Not applicable"),
-#         ("CAR", "Automobile"),
-#         ("BOOK", "Book"),
-#         ("EXERCISE", "Exercise"),
-#         ("FOOD", "Food"),
-#         ("HOME", "Home"),
-#         ("WORK", "Work"), ]
-#     category = models.CharField(
-#         max_length=64,
-#         choices=possible_categories, default="NONE")
+    test = []
 
 
 class Listing(models.Model):
@@ -56,3 +42,17 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.comment[:50]}"
+
+
+# class Category(models.Model):
+#     possible_categories = [
+#         ("NONE", "Not applicable"),
+#         ("CAR", "Automobile"),
+#         ("BOOK", "Book"),
+#         ("EXERCISE", "Exercise"),
+#         ("FOOD", "Food"),
+#         ("HOME", "Home"),
+#         ("WORK", "Work"), ]
+#     category = models.CharField(
+#         max_length=64,
+#         choices=possible_categories, default="NONE")
