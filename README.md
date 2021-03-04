@@ -33,7 +33,7 @@ http://127.0.0.1:8000/
 
 ## Improvements
 
-- Functinonal watchlist and category list
+- Functional watchlist and category list
 - User can close the bid
 
 ## Credits
