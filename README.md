@@ -15,8 +15,9 @@ Technology used:
 
 ## Screenshots
 
-![Logged Out](commerce/screenshot/logged_out.png)
-![Logged In](commerce/screenshot/logged_in.png)
+![Logged Out](screenshot/logged_out.png)
+![Logged In](screenshot/logged_in.png)
+
 
 ## Deployment
 
@@ -32,7 +33,7 @@ http://127.0.0.1:8000/
 
 ## Improvements
 
-- Functinonal watchlist and category list
+- Functional watchlist and category list
 - User can close the bid
 
 ## Credits
